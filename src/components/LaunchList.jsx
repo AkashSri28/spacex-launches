@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { fetchLaunches } from '../api/spacex';
 import LaunchCard from './LaunchCard';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSearchTerm, setLaunchYear, setLaunchStatus } from '../features/filter/filterSlice';
+import { useDispatch } from 'react-redux';
 
 const LaunchList = () => {
     const dispatch = useDispatch();
   const [launches, setLaunches] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [launchYear, setLaunchYear] = useState('');
+  const [launchStatus, setLaunchStatus] = useState('');
 
   const [filteredLaunches, setFilteredLaunches] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
-  const searchTerm = useSelector((state) => state.filter.searchTerm);
-  const launchYear = useSelector((state) => state.filter.launchYear);
-  const launchStatus = useSelector((state) => state.filter.launchStatus);
 
 
   useEffect(() => {
@@ -49,13 +47,14 @@ const LaunchList = () => {
   }, [launches, searchTerm, launchYear, launchStatus]);
 
 
+    console.log(launches)
 
   return (
     <div className="max-w-4xl mx-auto p-4">
       <input
         type="text"
         value={searchTerm}
-        onChange={(e) => dispatch(setSearchTerm(e.target.value))}
+        onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search launches"
         className="w-full p-2 mb-4 border rounded"
       />
@@ -63,7 +62,7 @@ const LaunchList = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <select
             value={launchYear}
-            onChange={(e) => dispatch(setLaunchYear(e.target.value))}
+            onChange={(e) => setLaunchYear(e.target.value)}
             className="p-2 border rounded"
           >
             <option value="">All Years</option>
@@ -73,7 +72,7 @@ const LaunchList = () => {
           </select>
           <select
             value={launchStatus}
-            onChange={(e) => dispatch(setLaunchStatus(e.target.value))}
+            onChange={(e) => setLaunchStatus(e.target.value)}
             className="p-2 border rounded"
           >
             <option value="">All Statuses</option>
