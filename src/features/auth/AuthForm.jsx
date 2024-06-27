@@ -10,7 +10,6 @@ const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   const handleLogin = () => {
-    // Mock authentication logic
     const user = { email, password };
     dispatch(login(user));
   };
