@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import AuthForm from './features/auth/AuthForm';
+import LaunchList from './components/LaunchList';
+import Header from './components/Header';
+import { login } from './features/auth/authSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  useEffect(() => {
+    const authUser = JSON.parse(localStorage.getItem('authUser'));
+    if (authUser) {
+      dispatch(login({ email: authUser.email, password: authUser.password }));
+    }
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-gray-100">
+      {isAuthenticated ? (
+        <>
+          <Header />
+          <LaunchList />
+        </>
+      ) : (
+        <AuthForm />
+      )}
     </div>
   );
 }
