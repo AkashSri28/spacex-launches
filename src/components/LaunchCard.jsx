@@ -8,10 +8,6 @@ const LaunchCard = ({ launch }) => {
       <p>Launch Date: {new Date(launch.launch_date_local).toLocaleDateString('en-GB')}</p>
       <p className="text-sm text-gray-700">Rocket: {launch.rocket.rocket_name}</p>
       <p className="text-sm text-gray-700">Launch Site: {launch.launch_site.site_name}</p>
-
-      {/* delete next 2 lines */}
-      <p className="text-sm text-gray-700">Flight Number: {launch.flight_number}</p>
-      <p className="text-sm text-gray-700">Launch Status: {launch.launch_success && launch.launch_success.toString()}</p>
     </div>
   );
 };

@@ -7,9 +7,6 @@ import { setSearchTerm, setLaunchYear, setLaunchStatus } from '../features/filte
 const LaunchList = () => {
     const dispatch = useDispatch();
   const [launches, setLaunches] = useState([]);
-//   const [searchTerm, setSearchTerm] = useState('');
-//   const [launchYear, setLaunchYear] = useState('');
-//   const [launchStatus, setLaunchStatus] = useState('');
 
   const [filteredLaunches, setFilteredLaunches] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -52,7 +49,6 @@ const LaunchList = () => {
   }, [launches, searchTerm, launchYear, launchStatus]);
 
 
-    console.log(launches)
 
   return (
     <div className="max-w-4xl mx-auto p-4">
@@ -86,7 +82,6 @@ const LaunchList = () => {
           </select>
         </div>
 
-{/* delete */}
         <h2>{filteredLaunches.length}</h2> 
 
         {loading && <div className="text-center text-gray-700">Loading...</div>}
