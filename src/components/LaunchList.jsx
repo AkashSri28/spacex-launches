@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { fetchLaunches } from '../api/spacex';
 import LaunchCard from './LaunchCard';
-import { useDispatch } from 'react-redux';
 
 const LaunchList = () => {
-    const dispatch = useDispatch();
   const [launches, setLaunches] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [launchYear, setLaunchYear] = useState('');
